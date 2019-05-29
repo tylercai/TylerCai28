@@ -25,9 +25,9 @@ namespace TylerCai.Controllers
         public IActionResult CreateUser(UserViewModel user)
         {
             Connect();
-            sqlCommand.CommandText = "select * from Users where Email=@Email";
+            sqlCommand.CommandText = "SELECT * FROM Users WHERE Email=@Email";
             sqlCommand.Parameters.Add(GetEmail(user));
-            if (sqlCommand.ExecuteReader().FieldCount > 0)
+            if (sqlCommand.ExecuteReader().HasRows)
             {
                 ModelState.AddModelError("User", "User already exists");
                 return View("Register", user);
@@ -37,6 +37,7 @@ namespace TylerCai.Controllers
 
             sqlCommand.Parameters.Add(GetEmail(user));
             sqlCommand.Parameters.Add(GetPassword(user));
+            sqlCommand.ExecuteNonQuery();
             Close();
             return View("Login");
         }
@@ -46,13 +47,13 @@ namespace TylerCai.Controllers
         {
             Connect();
 
-            sqlCommand.CommandText = "select * from Users where Email=@Email and Password=@Password";
+            sqlCommand.CommandText = "SELECT * from Users WHERE Email=@Email AND Password=@Password";
 
             sqlCommand.Parameters.Add(GetEmail(user));
             sqlCommand.Parameters.Add(GetPassword(user));
 
             SqlDataReader dataReader = sqlCommand.ExecuteReader();
-            if (dataReader.Read())
+            if (dataReader.HasRows)
             {
                 Console.WriteLine(dataReader["Email"]);
                 Close();
