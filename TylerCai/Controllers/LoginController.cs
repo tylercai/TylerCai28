@@ -25,6 +25,14 @@ namespace TylerCai.Controllers
         public IActionResult CreateUser(UserViewModel user)
         {
             Connect();
+            sqlCommand.CommandText = "select * from Users where Email=@Email";
+            sqlCommand.Parameters.Add(GetEmail(user));
+            if (sqlCommand.ExecuteReader().FieldCount > 0)
+            {
+                ModelState.AddModelError("User", "User already exists");
+                return View("Register", user);
+            }
+
             sqlCommand.CommandText = "INSERT INTO Users (Email, Password) VALUES (@Email, @Password)";
 
             sqlCommand.Parameters.Add(GetEmail(user));
