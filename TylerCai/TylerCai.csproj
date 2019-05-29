@@ -12,12 +12,4 @@
   <ItemGroup>
     <Folder Include="Views\Login\" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Remove="wwwroot\css\site.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="wwwroot\css\site.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Compile>
-  </ItemGroup>
 </Project>
