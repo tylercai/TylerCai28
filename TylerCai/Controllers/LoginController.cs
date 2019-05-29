@@ -29,7 +29,7 @@ namespace TylerCai.Controllers
 
             sqlCommand.Parameters.Add(GetEmail(user));
             sqlCommand.Parameters.Add(GetPassword(user));
-
+            Close();
             return View("Login");
         }
 
@@ -68,6 +68,7 @@ namespace TylerCai.Controllers
                 Connection = sqlConnection
             };
         }
+
         void Close()
         {
             sqlConnection.Close();
