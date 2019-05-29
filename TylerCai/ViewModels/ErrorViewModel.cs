@@ -1,6 +1,6 @@
 using System;
 
-namespace TylerCai.Models
+namespace TylerCai.ViewModels
 {
     public class ErrorViewModel
     {
