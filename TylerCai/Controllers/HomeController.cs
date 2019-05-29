@@ -28,7 +28,7 @@ namespace TylerCai.Controllers
         {
             ViewData["Message"] = "Your contact page.";
 
-            return View();
+            return View(new UserViewModel { Email = "example@example.com"});
         }
 
         public IActionResult Privacy()
