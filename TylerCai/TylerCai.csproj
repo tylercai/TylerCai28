@@ -11,5 +11,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Login\" />
+    <Folder Include="DatabaseConnections\" />
   </ItemGroup>
 </Project>
