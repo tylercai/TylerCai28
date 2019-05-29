@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.Sql;
-using TylerCai.Models;
 using TylerCai.ViewModels;
 
 namespace TylerCai.Controllers
@@ -14,16 +13,16 @@ namespace TylerCai.Controllers
 
         public IActionResult Login()
         {
-            return View();
+            return View(new UserViewModel());
         }
 
         public IActionResult Register()
         {
-            return View();
+            return View(new UserViewModel());
         }
 
         [HttpPost]
-        public IActionResult CreateUser(User user)
+        public IActionResult CreateUser(UserViewModel user)
         {
             Connect();
             sqlCommand.CommandText = "INSERT INTO Users (Email, Password) VALUES (@Email, @Password)";
@@ -35,7 +34,7 @@ namespace TylerCai.Controllers
         }
 
         [HttpPost]
-        public IActionResult Verify(User user)
+        public IActionResult Verify(UserViewModel user)
         {
             Connect();
 
@@ -74,7 +73,7 @@ namespace TylerCai.Controllers
             sqlConnection.Close();
         }
 
-        SqlParameter GetEmail(User user)
+        SqlParameter GetEmail(UserViewModel user)
         {
             SqlParameter email = new SqlParameter();
             email.ParameterName = "@Email";
@@ -82,7 +81,7 @@ namespace TylerCai.Controllers
             return email;
         }
 
-        SqlParameter GetPassword(User user)
+        SqlParameter GetPassword(UserViewModel user)
         {
             SqlParameter password = new SqlParameter();
             password.ParameterName = "@Password";
