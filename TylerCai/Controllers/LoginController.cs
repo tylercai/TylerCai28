@@ -28,7 +28,7 @@ namespace TylerCai.Controllers
             if (db.CreateUser(user))
             {
                 db.Close();
-                return View("Login");
+                return View("Login", new UserViewModel());
             }
             ModelState.AddModelError("User", "User already exists");
             db.Close();
@@ -48,7 +48,7 @@ namespace TylerCai.Controllers
             {
                 db.Close();
                 ModelState.AddModelError("User", "Username-password combination does not exist");
-                return View("Login");
+                return View("Login", user);
             }
         }
     }
