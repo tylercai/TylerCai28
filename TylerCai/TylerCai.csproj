@@ -7,10 +7,16 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Views\Login\" />
     <Folder Include="DatabaseConnections\" />
+    <Folder Include="Views\Shared\Component\" />
+    <Folder Include="Views\Shared\Component\LoggedIn\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ViewModels\User.cs" />
   </ItemGroup>
 </Project>

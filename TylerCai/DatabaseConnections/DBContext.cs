@@ -80,7 +80,6 @@ namespace TylerCai.DatabaseConnections
 
                 if (reader.HasRows)
                 {
-                    Console.WriteLine(reader["Email"]);
                     reader.Close();
                     return true;
                 }

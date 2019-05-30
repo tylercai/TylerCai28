@@ -24,7 +24,8 @@ body {
 }
 
 .height360 {
-    height: 360px !important;
+    height: 400px !important;
+    margin: auto !important;
 }
 
 /* QR code generator */

@@ -1,0 +1,12 @@
+﻿@model UserViewModel
+@if (Model != null && Model.Email != null && Model.Email != "")
+{
+    <li><a href="#">@Model.Email</a></li>
+    <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
+}
+else
+{
+    <li><a asp-area="" asp-controller="Login" asp-action="Login">Login</a></li>
+    <li><a asp-area="" asp-controller="Login" asp-action="Register">Register</a></li>
+}
+

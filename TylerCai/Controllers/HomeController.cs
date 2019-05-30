@@ -23,11 +23,11 @@ namespace TylerCai.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Contact(UserViewModel user)
         {
             ViewData["Message"] = "Your contact page.";
 
-            return View(new UserViewModel { Email = "example@example.com"});
+            return View(user);
         }
 
         public IActionResult Privacy()

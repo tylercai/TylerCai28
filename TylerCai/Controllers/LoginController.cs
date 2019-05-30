@@ -26,9 +26,7 @@ namespace TylerCai.Controllers
         {
             db = new DBContext();
             db.Connect();
-            bool created = db.CreateUser(user);
-            return View("About");
-            if (created)
+            if (db.CreateUser(user))
             {
                 db.Close();
                 return View("Login", new UserViewModel());
@@ -46,13 +44,13 @@ namespace TylerCai.Controllers
             if (db.VerifyUser(user))
             {
                 db.Close();
-                return View("Contact", new UserViewModel { Email = user.Email });
+                return RedirectToAction("Contact", "Home", new UserViewModel { Email = user.Email });
             }
             else
             {
                 db.Close();
                 ModelState.AddModelError("User", "Username-password combination does not exist");
-                return View("Login", user);
+                return View("Login", new UserViewModel());
             }
         }
     }
