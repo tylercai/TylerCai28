@@ -43,8 +43,8 @@ namespace TylerCai.DatabaseConnections
             {
                 sqlCommand = new SqlCommand();
                 sqlCommand.Connection = connection;
-
                 sqlCommand.CommandText = CHECK_USER_EXISTS;
+
                 sqlCommand.Parameters.Add(GetEmail(user));
                 SqlDataReader dr = sqlCommand.ExecuteReader();
                 if (dr.HasRows)

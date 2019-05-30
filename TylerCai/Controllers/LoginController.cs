@@ -9,7 +9,7 @@ namespace TylerCai.Controllers
 {
     public class LoginController : Controller
     {
-        DBContext db = new DBContext();
+        DBContext db;
 
         public IActionResult Login()
         {
@@ -24,8 +24,11 @@ namespace TylerCai.Controllers
         [HttpPost]
         public IActionResult CreateUser(UserViewModel user)
         {
+            db = new DBContext();
             db.Connect();
-            if (db.CreateUser(user))
+            bool created = db.CreateUser(user);
+            return View("About");
+            if (created)
             {
                 db.Close();
                 return View("Login", new UserViewModel());
@@ -38,6 +41,7 @@ namespace TylerCai.Controllers
         [HttpPost]
         public IActionResult Verify(UserViewModel user)
         {
+            db = new DBContext();
             db.Connect();
             if (db.VerifyUser(user))
             {
