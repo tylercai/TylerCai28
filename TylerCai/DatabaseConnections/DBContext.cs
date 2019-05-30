@@ -46,15 +46,19 @@ namespace TylerCai.DatabaseConnections
 
                 sqlCommand.CommandText = CHECK_USER_EXISTS;
                 sqlCommand.Parameters.Add(GetEmail(user));
-                if (sqlCommand.ExecuteReader().HasRows)
+                SqlDataReader dr = sqlCommand.ExecuteReader();
+                if (dr.HasRows)
                 {
                     return false;
                 }
 
+                sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
                 sqlCommand.CommandText = "INSERT INTO Users (Email, Password) VALUES (@Email, @Password)";
 
                 sqlCommand.Parameters.Add(GetEmail(user));
                 sqlCommand.Parameters.Add(GetPassword(user));
+                dr.Close();
                 sqlCommand.ExecuteNonQuery();
                 return true;
             }
@@ -77,8 +81,10 @@ namespace TylerCai.DatabaseConnections
                 if (reader.HasRows)
                 {
                     Console.WriteLine(reader["Email"]);
+                    reader.Close();
                     return true;
                 }
+                reader.Close();
             }
             return false;
         }
